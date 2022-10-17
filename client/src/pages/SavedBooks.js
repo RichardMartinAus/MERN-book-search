@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Jumbotron,
   Container,
@@ -20,10 +20,10 @@ const SavedBooks = () => {
   // use the useQuery() Hook to execute the GET_ME query on load and save it to a variable named userData.
   const { loading, data } = useQuery(QUERY_ME);
 
-  const userData = data?.me || data?.userData || {};
+  const userData = data?.me || {};
 
   // Use the useMutation() Hook to execute the REMOVE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function that's imported from API file. (Make sure you keep the removeBookId() function in place!)
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeBook] = useMutation(REMOVE_BOOK);
 
   const handleDeleteBook = async (bookId) => {
     // Check Auth (if token still valid)
@@ -39,8 +39,8 @@ const SavedBooks = () => {
       });
 
       removeBookId(bookId);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
