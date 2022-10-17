@@ -12,18 +12,18 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
 
-import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
+
+import Auth from '../utils/auth';
 
 const SavedBooks = () => {
   // Remove the useEffect() Hook that sets the state for UserData.
   // use the useQuery() Hook to execute the GET_ME query on load and save it to a variable named userData.
   const { loading, data } = useQuery(QUERY_ME);
-
-  const userData = data?.me || {};
-
   // Use the useMutation() Hook to execute the REMOVE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function that's imported from API file. (Make sure you keep the removeBookId() function in place!)
   const [removeBook] = useMutation(REMOVE_BOOK);
+
+  const userData = data?.me || {};
 
   const handleDeleteBook = async (bookId) => {
     // Check Auth (if token still valid)

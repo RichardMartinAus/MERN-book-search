@@ -80,27 +80,12 @@ const SearchBooks = () => {
     }
 
     try {
-      await saveBook({ bookData: { ...bookToSave } });
+      await saveBook({ variables: { bookData: { ...bookToSave } } });
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
     }
   };
-
-  // async saveBook({ user, body }, res) {
-  //   console.log(user);
-  //   try {
-  //     const updatedUser = await User.findOneAndUpdate(
-  //       { _id: user._id },
-  //       { $addToSet: { savedBooks: body } },
-  //       { new: true, runValidators: true }
-  //     );
-  //     return res.json(updatedUser);
-  //   } catch (err) {
-  //     console.log(err);
-  //     return res.status(400).json(err);
-  //   }
-  // },
 
   return (
     <>
